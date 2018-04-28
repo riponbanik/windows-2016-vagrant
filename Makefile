@@ -5,6 +5,8 @@ build-libvirt: windows-2016-amd64-libvirt.box
 
 build-virtualbox: windows-2016-amd64-virtualbox.box
 
+build-vsphere: windows-2016-amd64-vsphere.box
+
 build-windows-server-core-1709-libvirt: windows-server-core-1709-amd64-libvirt.box
 
 build-windows-server-core-1709-virtualbox: windows-server-core-1709-amd64-virtualbox.box
@@ -30,6 +32,11 @@ windows-2016-amd64-virtualbox.box: windows-2016.json autounattend.xml Vagrantfil
 	@echo BOX successfully built!
 	@echo to add to local vagrant install do:
 	@echo vagrant box add -f windows-2016-amd64 $@
+
+windows-2016-amd64-vsphere.box: windows-2016.json autounattend.xml Vagrantfile.template *.ps1
+	rm -f $@
+	CHECKPOINT_DISABLE=1 packer build -on-error=abort windows-2016-vsphere.json
+	@echo BOX successfully built!
 
 windows-server-core-1709-amd64-libvirt.box: windows-server-core-1709.json windows-server-core-1709/autounattend.xml Vagrantfile.template *.ps1 drivers
 	rm -f $@
