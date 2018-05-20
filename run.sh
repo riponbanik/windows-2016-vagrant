@@ -1,0 +1,2 @@
+# Build virtualbox image
+packer build -var iso_url="iso/14393.0.161119-1705.RS1_REFRESH_SERVERHYPERCORE_OEM_X64FRE_EN-US.ISO" -var iso_checksum=e14d53b5ee037ff292f46558ab68fbdd -var iso_checksum_type=sha256 -only=windows-2016-amd64-virtualbox windows-2016.json

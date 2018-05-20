@@ -5,3 +5,4 @@ packer_cache/
 drivers/
 isos/
 packer.log
+iso/*
